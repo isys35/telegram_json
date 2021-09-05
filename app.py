@@ -18,8 +18,13 @@ async def send_json(request: Request):
     return JSONResponse({'status': True})
 
 
+async def test_hello_page(request: Request):
+    return JSONResponse({'status': 'hello'})
+
+
 app = Starlette(debug=True, routes=[
     Route('/webhook', send_json, methods=['POST']),
+    Route('/', test_hello_page),
 ])
 
 if __name__ == '__main__':
